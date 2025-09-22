@@ -1,9 +1,9 @@
 import TicketForm from "@/app/(components)/TicketForm";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { connectDB } from "@/lib/mongodb";
-import Ticket from "@/app/(models)/Ticket";
+import Ticket from "@/models/Ticket";
 
 const TicketPage = async ({ params }) => {
   const session = await getServerSession(authOptions);

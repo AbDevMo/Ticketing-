@@ -1,8 +1,8 @@
 import TicketCard from "./(components)/TicketCard";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@lib/auth";
 import { redirect } from "next/navigation";
-import Ticket from "./(models)/Ticket";
+import Ticket from "@/models/Ticket";
 import { connectDB } from "@/lib/mongodb";
 
 const Dashboard = async () => {

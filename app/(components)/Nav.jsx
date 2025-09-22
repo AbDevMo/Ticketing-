@@ -5,9 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 
-const Nav = () => {
-  const { data: session } = useSession();
-
+const Nav = ({ session }) => {
   return (
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-4">
@@ -19,7 +17,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        {session?.user ? (
+        {session ? (
           <>
             <p className="text-default-text">{session.user.email}</p>
             <button

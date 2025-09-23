@@ -4,14 +4,17 @@ import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { set } from "mongoose";
 
 const Login = () => {
   const router = useRouter();
   const [err, setErr] = useState("");
+  const [Loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErr("");
+    setLoading(true);
 
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -25,6 +28,7 @@ const Login = () => {
 
     if (res.error) {
       setErr(res.error);
+      setLoading(false);
     } else {
       router.push("/"); // redirect to dashboard
     }
@@ -47,7 +51,7 @@ const Login = () => {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" required />
 
-        <button type="submit" className="btn">
+        <button type="submit" className="btn" disabled={Loading}>
           Login
         </button>
       </form>

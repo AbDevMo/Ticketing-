@@ -7,10 +7,12 @@ import { signIn } from "next-auth/react";
 const Signup = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [Loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -26,6 +28,7 @@ const Signup = () => {
 
     if (!res.ok) {
       setError(data.error || "Signup failed");
+      setLoading(false);
       return;
     }
 
@@ -59,7 +62,7 @@ const Signup = () => {
 
         {error && <p className="text-red-500">{error}</p>}
 
-        <button type="submit" className="btn">
+        <button type="submit" className="btn" disabled={Loading}>
           Sign Up
         </button>
       </form>

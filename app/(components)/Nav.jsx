@@ -18,13 +18,9 @@ const Nav = () => {
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        {status === "loading" ? (
-          <button disabled className="text-gray-400 cursor-not-allowed">
-            Loading...
-          </button>
-        ) : status === "authenticated" ? (
+        {session ? (
           <>
-            <p className="text-default-text">{session.user?.email}</p>
+            <p className="text-default-text">{session.user.email}</p>
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
               className="text-red-500"

@@ -18,13 +18,12 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
           <div className="flex flex-col h-screen max-h-screen">
-            <Nav session={session} />
+            <Nav />
             <div className="flex-grow overflow-y-auto bg-page text-default-text">
               {children}
             </div>

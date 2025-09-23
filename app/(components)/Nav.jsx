@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
-const Nav = ({ session }) => {
+const Nav = () => {
+  const { data: session, status } = useSession();
   return (
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-4">
@@ -17,9 +18,13 @@ const Nav = ({ session }) => {
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        {session ? (
+        {status === "loading" ? (
+          <button disabled className="text-gray-400 cursor-not-allowed">
+            Loading...
+          </button>
+        ) : status === "authenticated" ? (
           <>
-            <p className="text-default-text">{session.user.email}</p>
+            <p className="text-default-text">{session.user?.email}</p>
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
               className="text-red-500"

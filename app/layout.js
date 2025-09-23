@@ -2,8 +2,6 @@ import Nav from "./(components)/Nav";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Providers from "@/provider";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
